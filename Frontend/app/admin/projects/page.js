@@ -23,6 +23,10 @@ const emptyForm = {
 export default function ProjectsPage() {
     const router = useRouter();
 
+    const apiBaseUrl =
+    process.env.NEXT_PUBLIC_API_BASE_URL ||
+    "http://localhost:8080";
+
     const [projects, setProjects] = useState([]);
     const [form, setForm] = useState(emptyForm);
 
@@ -40,7 +44,7 @@ export default function ProjectsPage() {
             setError("");
 
             const response = await fetch(
-                "http://localhost:8080/api/projects",
+                `${apiBaseUrl}/api/projects`,
                 {
                     credentials: "include",
                 }
@@ -114,8 +118,8 @@ export default function ProjectsPage() {
 
         try {
             const url = editingId
-                ? `http://localhost:8080/api/projects/${editingId}`
-                : "http://localhost:8080/api/projects";
+                ? `${apiBaseUrl}/api/projects/${editingId}`
+                : `${apiBaseUrl}/api/projects`;
 
             const method = editingId ? "PUT" : "POST";
 
@@ -158,7 +162,7 @@ export default function ProjectsPage() {
             setError("");
 
             const response = await fetch(
-                `http://localhost:8080/api/projects/${id}`,
+                `${apiBaseUrl}/api/projects/${id}`,
                 {
                     method: "DELETE",
                     credentials: "include",

@@ -5,7 +5,11 @@ import { BiSolidHide, BiShowAlt } from "react-icons/bi";
 import { FaArrowLeft } from "react-icons/fa";
 
 export default function AdminLogin() {
+
   const router = useRouter();
+
+  const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8080";
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -20,7 +24,7 @@ export default function AdminLogin() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:8080/api/auth/login", {
+      const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

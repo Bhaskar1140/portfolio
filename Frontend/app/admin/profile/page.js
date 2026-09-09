@@ -16,6 +16,10 @@ export default function ProfilePage() {
 
     const router = useRouter();
 
+    const apiBaseUrl =
+    process.env.NEXT_PUBLIC_API_BASE_URL ||
+    "http://localhost:8080";
+
     const [profile, setProfile] = useState(null);
     const [username, setUsername] = useState("");
 
@@ -39,7 +43,7 @@ export default function ProfilePage() {
             setError("");
 
             const response = await fetch(
-                "http://localhost:8080/api/auth/profile",
+                `${apiBaseUrl}/api/auth/profile`,
                 {
                     credentials: "include",
                 }
@@ -122,7 +126,7 @@ export default function ProfilePage() {
             setSuccess("");
 
             const response = await fetch(
-                "http://localhost:8080/api/auth/profile",
+                `${apiBaseUrl}/api/auth/profile`,
                 {
                     method: "PUT",
                     headers: {

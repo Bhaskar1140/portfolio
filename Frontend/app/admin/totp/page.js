@@ -7,6 +7,10 @@ import { FaShieldAlt, FaArrowLeft } from "react-icons/fa";
 export default function TotpPage() {
     const router = useRouter();
 
+    const apiBaseUrl =
+    process.env.NEXT_PUBLIC_API_BASE_URL ||
+    "http://localhost:8080";
+
     const [code, setCode] = useState(["", "", "", "", "", ""]);
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
@@ -72,7 +76,7 @@ export default function TotpPage() {
 
         try {
             const response = await fetch(
-                "http://localhost:8080/api/auth/login/totp",
+                `${apiBaseUrl}/api/auth/login/totp`,
                 {
                     method: "POST",
                     headers: {
