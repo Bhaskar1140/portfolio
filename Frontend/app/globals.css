@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+/* Enable class-based dark mode in Tailwind v4 */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Colors */
+  --color-light-hover: #fcf4ff;
+  --color-dark-hover: #2a004a;
+  --color-dark-theme: #11001f;
+
+  /* Fonts */
+  --font-outfit: "Outfit", sans-serif;
+  --font-ovo: "Ovo", serif;
+
+  /* Shadows */
+  --shadow-black: 4px 4px 0 #000;
+  --shadow-white: 4px 4px 0 #fff;
+}
+
+
+/* =========================================================
+   LETTER BOUNCE
+   ========================================================= */
+
+@keyframes letter-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  35% {
+    transform: translateY(-18px);
+  }
+
+  60% {
+    transform: translateY(0) scaleY(0.82);
+  }
+
+  75% {
+    transform: translateY(-6px) scaleY(1.06);
+  }
+}
+
+.animate-letter-bounce {
+  animation: letter-bounce 700ms ease-out both;
+}
+
+
+/* =========================================================
+   TECHNOLOGY SLIDE
+   ========================================================= */
+
+@keyframes tech-slide {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-tech-slide {
+  animation: tech-slide 450ms ease-out;
+}
+
+
+/* =========================================================
+   CAT TAIL WAG
+   ========================================================= */
+
+@keyframes cat-tail-wag {
+  0%,
+  100% {
+    transform: rotate(-18deg);
+  }
+
+  50% {
+    transform: rotate(14deg);
+  }
+}
+
+.cat-tail-wag {
+  animation: cat-tail-wag 1.2s ease-in-out infinite;
+  transform-origin: right center;
+}

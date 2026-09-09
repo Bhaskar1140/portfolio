@@ -1,0 +1,30 @@
+flowchart TB
+    V["Visitor / Recruiter"]
+    YOU["You — no coding, just type and upload"]
+
+    subgraph APP["Your app — hosted on Vercel"]
+        direction TB
+        PUB["Public portfolio<br/>Next.js, your current site<br/>reads content dynamically"]
+        ADMIN["Admin panel — locked<br/>/admin, login required<br/>forms to edit everything"]
+        API["API layer<br/>Next.js route handlers<br/>public reads + authenticated writes"]
+    end
+
+    subgraph DATA["Managed cloud services — free tiers exist"]
+        direction TB
+        DB[("Database — MongoDB Atlas<br/>projects, about text, skills,<br/>social links, hero words")]
+        FILES["Media storage — Cloudinary or S3<br/>project images, Resume.pdf,<br/>profile video"]
+        AUTH["Admin auth<br/>single-user login"]
+    end
+
+    V -->|visits site| PUB
+    PUB -->|fetch content| API
+    API -->|query| DB
+    PUB -->|load images / PDF / video| FILES
+
+    YOU -->|1. log in| AUTH
+    AUTH --> ADMIN
+    YOU -->|2. add / edit / delete,<br/>upload files| ADMIN
+    ADMIN -->|save| API
+    API -->|write records| DB
+    API -->|upload files| FILES
+    API -.->|3. revalidate: live in seconds,<br/>no redeploy| PUB
