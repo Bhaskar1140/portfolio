@@ -2,6 +2,8 @@ package com.bhaskar.portfoliobackend.Config;
 
 import com.bhaskar.portfoliobackend.Service.AdminUserDetailsServices;
 import jakarta.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -33,6 +35,10 @@ import java.util.List;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
+        @Value("${FRONTEND_URL:http://localhost:3000}")
+        private String frontendUrl;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http)throws Exception{
         http
@@ -106,7 +112,8 @@ public class SecurityConfig {
         configuration.setAllowedOrigins(
                 List.of(
                         "http://localhost:3000",
-                        "http://192.168.31.152:3000"
+                        "http://192.168.31.152:3000",
+                        frontendUrl
                 )
         );
 
